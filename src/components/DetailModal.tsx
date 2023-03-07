@@ -22,14 +22,23 @@ const DetailModal = ({ isOpen, onClose, item }: Props) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>{item?.name}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>{item?.name}</ModalBody>
+          <ModalBody>
+            <div>
+              <img src={item?.mainImage} alt={item?.name} />
+            </div>
+            <div>지역:{item?.spaceCategory}</div>
+            <div>번호:{item?.idx}</div>
+            <div>등록일자:{item?.registrationDate}</div>
+            <div>최대 구매 개수: {item?.maximumPurchases}</div>
+            <div>가격:{item?.price.toLocaleString()}원</div>
+            <div>{item?.description}</div>
+          </ModalBody>
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+              닫기
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
