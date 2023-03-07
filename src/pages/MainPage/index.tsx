@@ -3,23 +3,15 @@ import { useState, useEffect } from 'react';
 import { TimeIcon } from '@chakra-ui/icons';
 import DetailModal from '@/components/DetailModal';
 import { Button, useDisclosure } from '@chakra-ui/react';
-
-export interface Product {
-  idx: number;
-  name: string;
-  mainImage: string;
-  description: string;
-  spaceCategory: string;
-  price: number;
-  maximumPurchases: number;
-  registrationDate: string;
-}
+import { IProduct } from '@/interface/products';
+import { useAppDispatch } from '@/lib/hooks/hooks';
+import { addCart } from '@/slices/cartSlice';
 
 const Main = () => {
-  const [data, setData] = useState<Product[]>([]);
+  const [data, setData] = useState<IProduct[]>([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [index, setIndex] = useState(0);
-  const [cart, setCart] = useState({});
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const getData = async () => {
@@ -31,18 +23,13 @@ const Main = () => {
 
   const matchedData = data?.find((item) => item.idx === index);
 
-  console.log(index);
+  console.log(matchedData);
   return (
     <div>
       {data.map((item, i) => (
         <div key={i}>
           <div>{item.idx}</div>
-          <TimeIcon
-            cursor="pointer"
-            onClick={() => {
-              setIndex(item.idx);
-            }}
-          />
+          <TimeIcon cursor="pointer" onClick={() => dispatch(addCart(item))} />
           <div>{item.name}</div>
           <div>
             <img src={item.mainImage} alt={item.name} />
@@ -62,7 +49,7 @@ const Main = () => {
       <DetailModal
         isOpen={isOpen}
         onClose={onClose}
-        item={matchedData as Product}
+        item={matchedData as IProduct}
       />
     </div>
   );

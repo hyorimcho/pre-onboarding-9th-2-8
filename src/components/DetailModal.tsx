@@ -1,4 +1,4 @@
-import { Product } from '@/pages/MainPage';
+import { IProduct } from '@/interface/products';
 import {
   Modal,
   ModalOverlay,
@@ -13,7 +13,7 @@ import {
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  item: Product;
+  item: IProduct;
 }
 
 const DetailModal = ({ isOpen, onClose, item }: Props) => {
