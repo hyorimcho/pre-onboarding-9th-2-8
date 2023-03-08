@@ -1,12 +1,21 @@
-import { VStack, VisuallyHidden, Heading } from '@chakra-ui/react';
+import { Select } from '@chakra-ui/react';
+import { ChangeEvent } from 'react';
 
-const Filter = () => {
+const Filter = ({
+  handleChange,
+}: {
+  handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+}) => {
   return (
-    <VStack as="section" bg="blue.100" w="25%" p={4}>
-      <VisuallyHidden>
-        <Heading>필터 옵션</Heading>
-      </VisuallyHidden>
-    </VStack>
+    <>
+      <Select placeholder="공간" size="md" w="100px" onChange={handleChange}>
+        <option value="강원">강원</option>
+        <option value="대구">대구</option>
+        <option value="부산">부산</option>
+        <option value="서울">서울</option>
+        <option value="제주">제주</option>
+      </Select>
+    </>
   );
 };
 export default Filter;
