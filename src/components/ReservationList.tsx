@@ -1,4 +1,4 @@
-import { IProduct } from '@/interface/product';
+import { ICart, IProduct } from '@/interface/product';
 import { RootState, useAppDispatch, useAppSelector } from '@/store';
 import {
   decrementQuantity,
@@ -22,7 +22,7 @@ import {
 } from '@chakra-ui/react';
 
 interface Props {
-  product: IProduct;
+  product: ICart;
 }
 
 const ReservationList = ({ product }: Props) => {
@@ -30,13 +30,10 @@ const ReservationList = ({ product }: Props) => {
   const { cart } = useAppSelector((state) => state);
   const toast = useToast();
 
-  console.log('product', product);
-
   const matchedCart = cart.find((item) => item.idx === product.idx);
 
   const handleClickIncrement = () => {
-    console.log(product.maximumPurchases);
-    if (product.maximumPurchases === matchedCart?.maximumPurchases) {
+    if (product.maximumPurchases === matchedCart?.quantity) {
       toast({
         title: `${product.name} 최대 구매 개수 초과`,
         description: `인 당 ${product.maximumPurchases}개만 구매하실 수 있습니다.`,

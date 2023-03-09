@@ -7,11 +7,14 @@ export interface IProduct {
   price: number;
   maximumPurchases: number;
   registrationDate: string;
-  quantity?: number;
 }
 
 export interface IProductReducer {
   isLoading: boolean;
   error: string | null;
   products: IProduct[];
+}
+
+export interface ICart extends IProduct {
+  quantity?: number;
 }

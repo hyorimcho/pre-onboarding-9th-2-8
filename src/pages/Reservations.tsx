@@ -14,8 +14,8 @@ const Reservations = () => {
       </Heading>
       <Grid templateColumns="repeat(auto-fill, minmax(15rem, 1fr))" gap={10}>
         {cart.length > 0 ? (
-          cart.map((product) => (
-            <ReservationList key={product.idx} product={product} />
+          cart.map((product, i) => (
+            <ReservationList key={i} product={product} />
           ))
         ) : (
           <Heading fontSize="xl">장바구니가 비었습니다.</Heading>

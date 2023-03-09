@@ -26,21 +26,23 @@ const Product = (productData: IProduct) => {
     const productLength =
       cart.filter((item: IProduct) => item.idx === product.idx).length + 1;
 
-    if (productLength <= Number(product.maximumPurchases)) {
-      dispatch(addToCart(product));
-      toast({
-        title: `${product.name} 1개 추가`,
-        description: `장바구니에 ${productLength}개 있습니다`,
-        position: 'top-right',
-        status: 'success',
-        isClosable: true,
-      });
-    } else {
+    const matchedCart = cart.find((item) => item.idx === product.idx);
+
+    if (product.maximumPurchases === (matchedCart?.quantity as number)) {
       toast({
         title: `${product.name} 구매 개수 초과`,
         description: `인 당 ${product.maximumPurchases}개만 구매하실 수 있습니다.`,
         position: 'top-right',
         status: 'error',
+        isClosable: true,
+      });
+    } else {
+      dispatch(addToCart({ ...product, quantity: 1 }));
+      toast({
+        title: `${product.name} 1개 추가`,
+        description: `장바구니에 ${productLength}개 있습니다`,
+        position: 'top-right',
+        status: 'success',
         isClosable: true,
       });
     }
