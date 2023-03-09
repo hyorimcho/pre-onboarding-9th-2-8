@@ -8,6 +8,8 @@ import {
   RangeSliderThumb,
   Stack,
   Text,
+  WrapItem,
+  Button,
 } from '@chakra-ui/react';
 import { getProducts } from '@/store/slices/productSlice';
 import Product from '@/components/Product';
@@ -18,6 +20,7 @@ import {
   getMaxPrice,
 } from '@/lib/utils/productsHelpers';
 import SpaceTag from './SpaceTag';
+import { Link } from 'react-router-dom';
 
 const ProductList = () => {
   const dispatch = useAppDispatch();
@@ -65,6 +68,9 @@ const ProductList = () => {
   return (
     <VStack as="section" bg="blue.100" w="75%" minW="500px" p={4}>
       <Heading>상품 정보</Heading>
+      <Link to="/reservations">
+        <Button colorScheme="telegram">장바구니</Button>
+      </Link>
       <VStack as="section" bg="blue.100" w="100%" p={4}>
         <RangeSlider defaultValue={[0, 100]} onChange={onSlidePrice}>
           <RangeSliderTrack>
