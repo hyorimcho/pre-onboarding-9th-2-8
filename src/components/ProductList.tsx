@@ -23,7 +23,7 @@ const ProductList = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const [currValues, setCurrValues] = useState<number[]>([]);
+  const [currValues, setCurrValues] = useState<number[]>([1000, 30000]);
 
   const handlePrice = (e: number[]) => {
     setCurrValues(e);
@@ -32,6 +32,7 @@ const ProductList = () => {
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const filteredItem = e.target.value;
     setCheckedValue(filteredItem);
+    console.log(filteredItem);
   };
   const [checkedValue, setCheckedValue] = useState('');
 
@@ -62,7 +63,7 @@ const ProductList = () => {
         <option value="제주">제주</option>
       </Select>
       <RangeSlider
-        defaultValue={[0, 0]}
+        defaultValue={currValues}
         min={1000}
         max={30000}
         step={1000}
