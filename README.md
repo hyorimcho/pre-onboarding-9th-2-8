@@ -2,9 +2,7 @@
 
 > [Travel Tech 스타트업 라이크어로컬 기업](https://likealocal.co.kr/) 과제 입니다.
 
-## [🔗 결과 링크](배포주소)
-
-https://pre-onboarding-9th-2-8.netlify.app/
+## [🔗 결과 링크](https://pre-onboarding-9th-2-8.netlify.app/)
 
 ## 📝 과제 목적
 
